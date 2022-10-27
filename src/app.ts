@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express'
 import morgan from 'morgan'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 // Global error handler middleware
 import globalErrorhandler, { AppError } from './utils/GlobalErrorHandler'
@@ -14,6 +15,10 @@ import reviewRouter from './routes/reviewRoutes'
 const app = express() // initializing app
 
 // Global middlewares
+
+// implementing cors
+app.use(cors())
+app.options('*', cors())
 
 // 1) import json data from request to request.body
 app.use(express.json())
