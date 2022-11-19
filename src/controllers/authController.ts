@@ -12,17 +12,21 @@ const sendUserTokenCookie = (user: UserInterface, response: Response) => {
         expiresIn: `${process.env.JWT_EXPIRES_IN}d`,
     })
     // console.log(token)
+    const expiresIn = new Date(
+        Date.now() + Number(process.env.JWT_EXPIRES_IN) * 24 * 60 * 60 * 1000
+    )
 
     response.cookie('jwt', token, {
-        expires: new Date(
-            Date.now() +
-                Number(process.env.JWT_EXPIRES_IN) * 24 * 60 * 60 * 1000
-        ),
+        expires: expiresIn,
         httpOnly: true,
     })
 
     response.status(200).json({
         status: 'success',
+        auth: {
+            token,
+            expiresIn,
+        },
         data: {
             id: user.id,
             name: user.name,
