@@ -23,10 +23,6 @@ const sendUserTokenCookie = (user: UserInterface, response: Response) => {
 
     response.status(200).json({
         status: 'success',
-        auth: {
-            token,
-            expiresIn,
-        },
         data: {
             id: user.id,
             name: user.name,
