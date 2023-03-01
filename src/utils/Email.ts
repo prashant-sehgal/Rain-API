@@ -15,7 +15,7 @@ export const sendEmail = async (to: string, subject: string, body: string) => {
 
         // mail options
         const mailOptions = {
-            from: process.env.EMAIL_SENDER,
+            from: `Admin <${process.env.EMAIL_SENDER}>`,
             to,
             subject,
             html: body,
