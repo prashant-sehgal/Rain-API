@@ -31,7 +31,7 @@ class APIFeatures {
             const fieldString = this.queryObject.fields.replaceAll(',', ' ')
             this.query = this.query.select(fieldString)
         } else {
-            this.query = this.query.select('-__v -createdAt')
+            this.query = this.query.select('-__v')
         }
         return this
     }

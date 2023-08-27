@@ -23,6 +23,7 @@ const sendUserTokenCookie = (user: UserInterface, response: Response) => {
 
     response.status(200).json({
         status: 'success',
+        jwt,
         data: {
             id: user.id,
             name: user.name,
@@ -75,7 +76,7 @@ export const protect = CatchAsync(
         response: Response,
         next: NextFunction
     ) => {
-        const token = request.cookies.jwt
+        const token = request.cookies.jwt || request.body.jwt
 
         // if token exists
         if (!token)
