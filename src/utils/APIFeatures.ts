@@ -11,6 +11,11 @@ class APIFeatures {
                 (match) => `$${match}`
             )
         )
+        delete queryObject.sort
+        delete queryObject.fields
+        delete queryObject.limit
+        delete queryObject.page
+
         this.query = this.query.find(queryObject)
         return this
     }
